@@ -11,19 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasOne(models.UserBiodata)
+      User.hasOne(models.UserHistory)
     }
   }
   User.init({
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    role: {
-      type: DataTypes.ENUM,
-      values: ["SUPERADMIN", "PLAYER"],
-      validate: {
-        isIn: [["SUPERADMIN", "PLAYER"]]
-      }
-    }
+    role: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',
