@@ -1,24 +1,21 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('UserBiodata', {
+    await queryInterface.createTable('UserHistories', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      first_name: {
+      win: {
         type: Sequelize.STRING
       },
-      last_name: {
+      lose: {
         type: Sequelize.STRING
       },
-      gender: {
+      draw: {
         type: Sequelize.STRING
-      },
-      birthdate: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +28,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('UserBiodata');
+    await queryInterface.dropTable('UserHistories');
   }
 };

@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt')
-const salt = process.env.SALT || 10
+const salt = 10
 
-const hashPassword = async (password) => {
-    return await bcrypt.hashSync(password, salt)
+const hashPassword = (password) => {
+    return bcrypt.hashSync(password, parseInt(salt))
 }
 
 const verifyPassword = async (password, hashedPassword) => {
