@@ -5,6 +5,7 @@ const authentication = require('../middleware/authentication')
 
 biodataRouter.use(authentication)
 biodataRouter.get("/", BiodataController.getBiodata)
+
 biodataRouter.get("/:id", authorizationBiodata, BiodataController.getBiodataById)
 
 module.exports = biodataRouter
