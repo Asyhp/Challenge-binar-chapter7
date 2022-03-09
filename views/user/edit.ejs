@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>editform</title>
+</head>
+<body>
+  <h2>edit dulu~</h2>
+  <form action="/user/edit/<%= data.id %>" method="POST">
+    Username: <br>
+    <input type="text", name="username" value=<%= data.username%>><br>
+    Email:<br>
+    <input type="text", name="email" value=<%= data.email%>><br>
+    Password:<br>
+    <input name="password" type="password" value=<%= data.password%> required ><br>
+    Role:<br>
+    <input type="text", name="role" value=<%= data.role%>><br>
+    <input type="submit"><br>
+  </form>
+</body>
+</html>

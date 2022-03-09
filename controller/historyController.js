@@ -1,6 +1,6 @@
-const { UserBiodata } = require('../models')
+const { UserHistory } = require('../models')
 
-class BiodataController {
+class HistoryController {
   // static getBiodata = async (req, res, next) => {
   //   // ambil userid dari cookies
   //   const { UserId } = req.cookies
@@ -36,11 +36,11 @@ class BiodataController {
   // }
 
   static viewAll(req, res) {
-    UserBiodata.findAll({
+    UserHistory.findAll({
       order: [["id", 'ASC']]
     })
       .then((data) => {
-        res.render("biodata", { data })
+        res.render("history", { data })
       })
       .catch((error) => {
         console.log(error)
@@ -49,10 +49,10 @@ class BiodataController {
 
   static viewById(req, res) {
     const id = req.params.id
-    UserBiodata.findByPk(id)
+    UserHistory.findByPk(id)
       .then((data) => {
         data = [data]
-        res.render("biodata", { data })
+        res.render("history", { data })
       })
       .catch((error) => {
         console.log(error)
@@ -62,10 +62,10 @@ class BiodataController {
 
   static getEditForm(req, res) {
     const id = req.params.id
-    UserBiodata.findByPk(id)
+    UserHistory.findByPk(id)
       .then((data) => {
         console.log(data)
-        res.render('biodata/edit', { data })
+        res.render('history/edit', { data })
       })
       .catch((err) => {
         console.log(err)
@@ -74,19 +74,18 @@ class BiodataController {
 
   static editBiodata(req, res) {
     const id = req.params.id
-    let updatedBiodata = {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        gender: req.body.gender,
-        birthdate: req.body.birthdate
+    let updatedHistory = {
+        win: req.body.win,
+        draw: req.body.draw,
+        lose: req.body.lose
     }
-    UserBiodata.update(updatedBiodata, {
+    UserHistory.update(updatedHistory, {
       where: {
         id: id
       }
     })
       .then(() => {
-        res.redirect("/biodata")
+        res.redirect("/history")
       })
       .catch((err) => {
         console.log(err)
@@ -95,11 +94,11 @@ class BiodataController {
 
   static deleteUser(req, res) {
     const id = req.params.id
-    UserBiodata.destroy({
+    UserHistory.destroy({
       where: { id: id }
     })
       .then(() => {
-        res.redirect("/biodata")
+        res.redirect("/history")
       })
       .catch((err) => {
         console.log(err)
@@ -108,4 +107,4 @@ class BiodataController {
 
 }
 
-module.exports = { BiodataController }
+module.exports = { HistoryController }

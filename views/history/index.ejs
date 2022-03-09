@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
+    <title>Histories Data</title>
+  </head>
+  <body style="background-color: rgb(177, 145, 5)">
+    <div style="text-align: center">
+      <h1 style="color: rgb(11, 32, 223); margin-top: 2em; text-shadow: 2px 2px grey">
+        <i>Histories</i>
+      </h1>
+      <table
+        style="
+          width: 65%;
+          border: 1px solid black;
+          margin: auto auto;
+          margin-top: 2em;
+        "
+      >
+        <tr style="border: 1px solid black; background-color: azure">
+          <th style="border: 1px solid black">ID</th>
+          <th style="border: 1px solid black">Win</th>
+          <th style="border: 1px solid black">Draw</th>
+          <th style="border: 1px solid black">Lose</th>
+        </tr>
+        <% for (let i = 0; i < data.length; i++){ %>
+        <tr style="border: 1px solid black; font-weight: bold;">
+          <td style="border: 1px solid black"><%= data[i].id %></td>
+          <td style="border: 1px solid black"><%= data[i].win %></td>
+          <td style="border: 1px solid black"><%= data[i].draw %></td>
+          <td style="border: 1px solid black"><%= data[i].lose %></td>
+          <td>
+            <a href="/history/edit/<%=data[i].id%>">Edit</a> |
+            <a href="/history/delete/<%= data[i].id%>">Delete</a>
+          </td>
+        </tr>
+        <% } %>
+      </table>
+      <button
+        onclick="goBack()"
+        style="display: block; margin: auto auto; margin-top: 10px"
+      >
+        Go Back
+      </button>
+    </div>
+  </body>
+</html>

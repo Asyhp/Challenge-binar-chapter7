@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>editform</title>
+</head>
+<body>
+  <h2>edit dulu~</h2>
+  <form action="/history/edit/<%= data.id %>" method="POST">
+    Win: <br>
+    <input type="text", name="win" value=<%= data.win%>><br>
+    Draw:<br>
+    <input type="text", name="draw" value=<%= data.draw%>><br>
+    Lose:<br>
+    <input name="lose" type="text" value=<%= data.lose%> ><br>
+    <input type="submit"><br>
+  </form>
+</body>
+</html>
