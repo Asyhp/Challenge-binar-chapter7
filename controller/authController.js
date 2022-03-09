@@ -35,13 +35,14 @@ class AuthController {
                 res.status(400).json({ message: "bad request"})
             }
 
-            if (user) {
+            if (user, biodata) {
                 const history = await UserHistories.create({ name: username, UserId: user.id })
                 if (history) {
                     return res.status(201).json({
                         username: user.username,
                         email: user.email,
                         role: user.role,
+                        biodata,
                         history
                     })
                 }
@@ -68,12 +69,16 @@ class AuthController {
             if (!isPasswordMatch) return res.status(409).json({ message: "Password Salah"})
             const access_token = await generateToken({
                 id: user.id,
-                email: user.email
+                email: user.email,
+                role: user.role
             })
             res.cookie("UserId", user.id, {
                 httpOnly: true
             })
             res.cookie("access_token", access_token, {
+                httpOnly: true
+            })
+            res.cookie("role",  user.role, {
                 httpOnly: true
             })
             return res.status(200).json({

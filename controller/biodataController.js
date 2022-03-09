@@ -6,25 +6,27 @@ class BiodataController {
     const { UserId } = req.cookies
 
     // ambil dari req.user yang diselipin dari authentikasi
-    const userIdDariReqUser = req.user.id
+    
+    const userStatus = req.user.role
 
     try {
-      const userBiodata = await UserBiodata.findOne({
-        where: {
-          UserId: userIdDariReqUser
-        }
-      })
-      res.status(200).json({ userBiodata })
+      if ( userStatus === "SUPERADMIN" ){
+        const userBiodata = await UserBiodata.findAll()
+        res.status(200).json({ userBiodata })
+      }
     } catch (error) {
-      res.status(500).json(error)
+      res.status(500).json({ message: "error nih" })
     }
+
   }
 
   static getBiodataById = async (req, res, next) => {
+    const userIdDariReqUser = req.user.id
+
     try {
       const userBiodata = await UserBiodata.findByPk({
         where: {
-          id: req.params.id
+          userId: userIdDariReqUser
         }
       })
       res.status(200).json({ userBiodata })
@@ -32,6 +34,8 @@ class BiodataController {
       res.status(500).json(error)
     }
   }
+
+  
 }
 
 module.exports = { BiodataController }
