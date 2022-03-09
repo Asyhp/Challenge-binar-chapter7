@@ -1,4 +1,4 @@
-const { User, UserBiodata, UserHistories } = require("../models")
+const { User, UserBiodata, UserHistory } = require("../models")
 const { hashPassword, verifyPassword } = require("../helpers/passwordHandler")
 const { generateToken } = require("../helpers/tokenHandler")
 
@@ -23,38 +23,22 @@ class AuthController {
 
             if (user) {
                 const biodata = await UserBiodata.create({ name: username, UserId: user.id })
-                if (biodata) {
-                    return res.status(201).json({
-                        username: user.username,
-                        email: user.email,
-                        role: user.role,
-                        biodata
-                    })
+                const history = await UserHistory.create({ name: username, UserId: user.id})
+                if (biodata, history) {
+                    return res.redirect("login")
                 }
             } else if (!user) {
                 res.status(400).json({ message: "bad request"})
             }
-
-            if (user, biodata) {
-                const history = await UserHistories.create({ name: username, UserId: user.id })
-                if (history) {
-                    return res.status(201).json({
-                        username: user.username,
-                        email: user.email,
-                        role: user.role,
-                        biodata,
-                        history
-                    })
-                }
-            } else if (!user) {
-                res.status(400).json({ message: "bad request" })
-            }
-
         } catch (error) {
             return res.status(500).json({ message: error.message })
         }
     }
 
+
+    static getLogin(req, res) {
+        res.render("login")
+    }
 
     static login = async (req, res) => {
         try {
@@ -81,15 +65,18 @@ class AuthController {
             res.cookie("role",  user.role, {
                 httpOnly: true
             })
-            return res.status(200).json({
-                id: user.id,
-                username: user.username,
-                message: `user ${username}, berhasil login`
-            })
+            
+            return res.redirect("index")
+
         } catch (error) {
             return res.status(500).json({ message: error })
         }
     }
+
+    static getIndex (req, res) {
+        res.render("auth/index")
+    }
+
 }
 
 module.exports = AuthController
