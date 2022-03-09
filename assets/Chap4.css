@@ -1,0 +1,86 @@
+body,
+html {
+  margin-top: 20px;
+  margin-left: -50px;
+  padding: 1px;
+}
+
+.main-screen {
+  background: #9f835f;
+}
+
+#back-button {
+  background-image: url("https://media.discordapp.net/attachments/911499570406653985/916710916983226388/75224bcf93cfb01f.png");
+  background-repeat: no-repeat;
+}
+
+h2 {
+  color: #f9b23d;
+  text-transform: uppercase;
+}
+
+h3 {
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 3px;
+}
+
+.btn {
+  padding: 50px;
+}
+
+#button1 {
+  border: 0px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#button2 {
+  border: 0px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#button3 {
+  border: 0px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#button4 {
+  border: 0px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#button5 {
+  border: 0px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#button6 {
+  border: 0px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.tombol {
+  border-radius: 10px;
+  background-color: transparent;
+  padding: 20px;
+}
+
+#refresh {
+  border: 0px;
+  background-color: transparent;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#bg-vs {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 100px;
+  color: #bd0000;
+}
